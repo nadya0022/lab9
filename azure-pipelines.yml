@@ -9,20 +9,20 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
-steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: '10.x'
-  displayName: 'Install Node.js'
-  
-  strategy:
+strategy:
  matrix:
  jdk10:
  jdk_version: "1.10"
  jdk11:
  jdk_version: "1.11"
  maxParallel: 2
-
+ 
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '10.x'
+  displayName: 'Install Node.js'
+  
 - script: |
     npm install
     npm run build
